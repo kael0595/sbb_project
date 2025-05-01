@@ -44,4 +44,9 @@ public class MemberController {
     public String loginForm() {
         return "member/login";
     }
+
+    @PostMapping("/logout")
+    public String logout() {
+        return "redirect:/";
+    }
 }
