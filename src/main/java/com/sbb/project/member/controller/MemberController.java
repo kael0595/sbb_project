@@ -3,6 +3,7 @@ package com.sbb.project.member.controller;
 import com.sbb.project.member.dto.MemberDto;
 import com.sbb.project.member.entity.Member;
 import com.sbb.project.member.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,5 +58,30 @@ public class MemberController {
         Member member = memberService.getMemberByusername(username);
         model.addAttribute("member", member);
         return "member/mypage";
+    }
+
+    @GetMapping("/mypage/{username}/update")
+    public String updateForm(@PathVariable("username") String username, Model model) {
+        Member member = memberService.getMemberByusername(username);
+        model.addAttribute("member", member);
+        return "member/update";
+    }
+
+    @PostMapping("/mypage/{username}/update")
+    public String update(@PathVariable("username") String username, @Valid MemberDto memberDto,
+                         BindingResult bindingResult, HttpSession session) {
+
+        if (bindingResult.hasErrors()) {
+            return "member/update";
+        }
+
+        Member member = memberService.getMemberByusername(username);
+
+        memberService.update(member, memberDto);
+
+        session.invalidate();
+
+        return "redirect:/";
+
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,7 @@ public class MemberService {
                 .email(memberDto.getEmail())
                 .addr1(memberDto.getAddr1())
                 .addr2(memberDto.getAddr2())
+                .createDt(LocalDateTime.now())
                 .build();
         return memberRepository.save(member);
     }
@@ -42,5 +44,18 @@ public class MemberService {
         Member member = _member.get();
 
         return member;
+    }
+
+    public void update(Member member, MemberDto memberDto) {
+        Member updateMember = member.toBuilder()
+                .password(passwordEncoder.encode(memberDto.getPassword()))
+                .name(memberDto.getName())
+                .nickname(memberDto.getNickname())
+                .email(memberDto.getEmail())
+                .addr1(memberDto.getAddr1())
+                .addr2(memberDto.getAddr2())
+                .updateDt(LocalDateTime.now())
+                .build();
+        memberRepository.save(updateMember);
     }
 }
