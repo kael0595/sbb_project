@@ -4,8 +4,11 @@ import com.sbb.project.member.dto.MemberDto;
 import com.sbb.project.member.entity.Member;
 import com.sbb.project.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +29,18 @@ public class MemberService {
                 .addr2(memberDto.getAddr2())
                 .build();
         return memberRepository.save(member);
+    }
+
+    public Member getMemberByusername(String name) {
+
+        Optional<Member> _member = memberRepository.findByusername(name);
+
+        if (_member.isEmpty()) {
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+        }
+
+        Member member = _member.get();
+
+        return member;
     }
 }
