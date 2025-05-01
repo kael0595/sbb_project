@@ -1,12 +1,18 @@
 package com.sbb.project.member.entity;
 
 import com.sbb.project.base.entity.BaseEntity;
+import com.sbb.project.board.entity.Board;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Entity
 @SuperBuilder(toBuilder = true)
@@ -33,4 +39,7 @@ public class Member extends BaseEntity {
     private String addr1;
 
     private String addr2;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    private List<Board> boardList;
 }
