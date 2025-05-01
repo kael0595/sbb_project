@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+</head>
+<body>
+<center>
+    <h1>마이페이지</h1>
+    <table>
+        <tr>
+            <th>회원 번호</th>
+            <td th:text="${member.id}"></td>
+        </tr>
+        <tr>
+            <th>아이디</th>
+            <td th:text="${member.username}"></td>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>비밀번호 확인</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td th:text="${member.name}"></td>
+        </tr>
+        <tr>
+            <th>닉네임</th>
+            <td th:text="${member.nickname}"></td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td th:text="${member.email}"></td>
+        </tr>
+        <tr>
+            <th>기본 주소</th>
+            <td th:text="${member.addr1}"></td>
+        </tr>
+        <tr>
+            <th>상세 주소</th>
+            <td th:text="${member.addr2}"></td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
