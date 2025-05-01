@@ -8,10 +8,14 @@
 <div>
   <h2>
       <a th:href="@{|/member/mypage/${member.username}|}" th:text="${member.username}"></a>님 환영합니다.
+      <form th:action="@{/member/logout}" method="post">
+          <button>로그아웃</button>
+      </form>
   </h2>
 </div>
 <div>
-
+    <a th:href="@{/member/join}">회원가입</a>
+    <a th:href="@{/member/login}">로그인</a>
 </div>
 </body>
 </html>
