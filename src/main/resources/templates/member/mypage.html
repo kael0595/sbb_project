@@ -45,6 +45,12 @@
             <td th:text="${member.addr2}"></td>
         </tr>
     </table>
+    <button>
+        <a th:href="@{|/member/mypage/${member.username}/update|}">수정하기</a>
+    </button>
+    <button>
+        <a th:href="@{|/member/mypage/${member.username}/delete|}">삭제하기</a>
+    </button>
 </center>
 </body>
 </html>
